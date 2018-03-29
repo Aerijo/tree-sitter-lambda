@@ -26,14 +26,23 @@ module.exports = grammar({
 
     expression: $ => seq(repeat1($._term), choice("\n", ";")),
 
-    _term: $ => choice(
+    _term: $ => seq(choice(
       $.apply,
       $.named_variable,
       $.variable,
       $.numbered_variable,
       $.function,
-      $.group
-    ),
+      $.group,
+      $.beta_replacement
+    )),
+
+    beta_replacement: $ => prec(1, seq($._term, $.repl_def)),
+
+    repl_def: $ => seq("[", $._term, $.replace_operator, $._term, "]"),
+
+    _var: $ => choice($.variable, $.named_variable, $.numbered_variable),
+
+    replace_operator: $ => prec(1, choice("/", "\\", "|", "<-")),
 
     named_variable: $ => choice("True", "False", " 0", " 1", " 2"),
 

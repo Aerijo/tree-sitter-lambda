@@ -127,3 +127,34 @@ comment
 ---
 
 (program (comment))
+
+
+===============
+Beta replacement
+===============
+
+( λy . x (x y) ) [ λy . False <- x ] True
+
+---
+
+(program
+  (expression
+    (apply
+      (beta_replacement
+        (group
+          (function
+            (bound_variables (variable))
+            (func_body
+              (apply
+                (variable)
+                (group
+                  (apply
+                    (variable)
+                    (variable)))))))
+        (repl_def
+          (function
+            (bound_variables (variable))
+            (func_body (named_variable)))
+          (replace_operator)
+          (variable)))
+      (named_variable))))
