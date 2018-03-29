@@ -1,0 +1,51 @@
+===============
+Y combinator
+===============
+
+λf.(λx.f(x x))(λx.f(x x))
+
+---
+
+(program
+  (expression (function
+    (bound_variables (variable))
+    (func_body
+      (apply
+        (group
+          (function
+            (bound_variables (variable))
+            (func_body (apply (variable) (group (apply (variable) (variable)))))))
+        (group
+          (function
+            (bound_variables (variable))
+            (func_body (apply (variable) (group (apply (variable) (variable))))))))))))
+
+===============
+isZero 0
+===============
+
+-- isZero 0
+>> (λz.z(λy.False)True) 0
+=> 0 (λy.False) True
+=> False (λy.False) True
+=> True
+
+---
+
+(program
+  (comment)
+  (block (begin_block) (expression (apply (group (function
+    (bound_variables (variable))
+    (func_body (apply (apply (variable) (group (function
+      (bound_variables (variable))
+      (func_body (named_variable))))) (named_variable))))) (named_variable)))
+  (beta_reduce)
+  (expression (apply (apply (named_variable) (group (function
+    (bound_variables (variable))
+    (func_body (named_variable))))) (named_variable)))
+  (beta_reduce)
+  (expression (apply (apply (named_variable) (group (function
+    (bound_variables (variable))
+    (func_body (named_variable))))) (named_variable)))
+  (beta_reduce)
+  (expression (named_variable))))
