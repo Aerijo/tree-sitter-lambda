@@ -1,5 +1,5 @@
 -- True w
-(λx.λy.x)w
+>> (λx.λy.x)w
 => λy.w
 => w
 
@@ -16,7 +16,7 @@
 λz.z(λy.False)True
 
 -- isZero 2
-(λz.z(λy.False)True) 2
+>> (λz.z(λy.False)True) 2
 => 2 (λy.False) True
 => (λx.λy. x (x y)) (λy.False) True
 => (λy.(λy.False) ((λy.False) y)) True
@@ -25,7 +25,7 @@
 => False
 
 -- isZero 0
-(λz.z(λy.False)True) 0
+>> (λz.z(λy.False)True) 0
 => 0 (λy.False) True
 => False (λy.False) True
 => True
