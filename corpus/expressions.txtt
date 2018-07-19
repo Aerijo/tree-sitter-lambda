@@ -15,7 +15,7 @@ Identity functions
 
 > \x -> x
 > lambda x: x
-> λx -> x
+> λx . x
 
 ---
 
@@ -177,6 +177,7 @@ Replacement
 
 > x [x := y]
 > \x -> x [x -> y] z
+> \x -> x [x -> y]
 > (\x -> x) [x -> y]
 
 ---
@@ -203,6 +204,21 @@ Replacement
           (identifier)
         )
         (identifier)
+      )
+    )
+  )
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (identifier)
+        (beta_replacement
+          (identifier)
+          (replace_forwards)
+          (identifier)
+        )
       )
     )
   )
