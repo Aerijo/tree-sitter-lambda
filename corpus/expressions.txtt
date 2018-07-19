@@ -1,0 +1,226 @@
+=====
+Single identifier
+=====
+
+> foo
+
+---
+
+(program (expression (identifier)))
+
+
+=====
+Identity functions
+=====
+
+> \x -> x
+> lambda x: x
+> λx -> x
+
+---
+
+(program
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (identifier)
+      )
+    )
+  )
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (identifier)
+      )
+    )
+  )
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (identifier)
+      )
+    )
+  )
+)
+
+
+=====
+Curried functions
+=====
+
+> \x -> \y -> x y
+> \x y -> x y
+
+---
+
+(program
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (function
+          (func_indicator)
+          (identifier)
+          (func_sep)
+          (func_body
+            (identifier)
+            (identifier)
+          )
+        )
+      )
+    )
+  )
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (identifier)
+      (func_sep)
+      (func_body
+        (identifier)
+        (identifier)
+      )
+    )
+  )
+)
+
+=====
+Groups
+=====
+
+> (x y) z (p (r (q))) l
+
+---
+
+(program
+  (expression
+    (group
+      (identifier)
+      (identifier)
+    )
+    (identifier)
+    (group
+      (identifier)
+      (group
+        (identifier)
+        (group
+          (identifier)
+        )
+      )
+    )
+    (identifier)
+  )
+)
+
+=====
+Y-combinator
+=====
+
+> λf.(λx.f(x x))(λx.f(x x))
+
+---
+
+(program
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (group
+          (function
+            (func_indicator)
+            (identifier)
+            (func_sep)
+            (func_body
+              (identifier)
+              (group
+                (identifier)
+                (identifier)
+              )
+            )
+          )
+        )
+        (group
+          (function
+            (func_indicator)
+            (identifier)
+            (func_sep)
+            (func_body
+              (identifier)
+              (group
+                (identifier)
+                (identifier)
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+=====
+Replacement
+=====
+
+> x [x := y]
+> \x -> x [x -> y] z
+> (\x -> x) [x -> y]
+
+---
+
+(program
+  (expression
+    (identifier)
+    (beta_replacement
+      (identifier)
+      (replace_forwards)
+      (identifier)
+    )
+  )
+  (expression
+    (function
+      (func_indicator)
+      (identifier)
+      (func_sep)
+      (func_body
+        (identifier)
+        (beta_replacement
+          (identifier)
+          (replace_forwards)
+          (identifier)
+        )
+        (identifier)
+      )
+    )
+  )
+  (expression
+    (group
+      (function
+        (func_indicator)
+        (identifier)
+        (func_sep)
+        (func_body
+          (identifier)
+        )
+      )
+    )
+    (beta_replacement
+      (identifier)
+      (replace_forwards)
+      (identifier)
+    )
+  )
+)

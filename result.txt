@@ -1,0 +1,684 @@
+ 
+  ♢ [1mThe lambda language[22m 
+  
+new_parse {}
+process { version: '0',
+  version_count: '1',
+  state: '1',
+  row: '0',
+  col: '0' }
+lex_internal { state: '74', row: '0', column: '0' }
+   consume { character: '\'\n\'' }
+lexed_lookahead { sym: '_newline', size: '2' }
+shift { state: '8' }
+process { version: '0',
+  version_count: '1',
+  state: '8',
+  row: '1',
+  col: '0' }
+lex_internal { state: '74', row: '1', column: '0' }
+   consume { character: '\'>\'' }
+   consume { character: '\'>\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '>>>', size: '6' }
+shift { state: '3' }
+process { version: '0',
+  version_count: '1',
+  state: '3',
+  row: '1',
+  col: '6' }
+lex_internal { state: '89', row: '1', column: '6' }
+   skip { character: '\' \'' }
+   consume { character: '\'{\'' }
+lexed_lookahead { sym: '{', size: '2' }
+shift { state: '17' }
+process { version: '0',
+  version_count: '1',
+  state: '17',
+  row: '1',
+  col: '10' }
+lex_internal { state: '107', row: '1', column: '10' }
+   consume { character: '\'t\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'g\'' }
+lexed_lookahead { sym: '/[^}]*/', size: '6' }
+shift { state: '43' }
+process { version: '0',
+  version_count: '1',
+  state: '43',
+  row: '1',
+  col: '16' }
+lex_internal { state: '125', row: '1', column: '16' }
+   consume { character: '\'}\'' }
+lexed_lookahead { sym: '}', size: '2' }
+shift { state: '79' }
+process { version: '0',
+  version_count: '1',
+  state: '79',
+  row: '1',
+  col: '18' }
+lex_internal { state: '89', row: '1', column: '18' }
+   skip { character: '\' \'' }
+   consume { character: '\'f\'' }
+   consume { character: '\'o\'' }
+   consume { character: '\'o\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+reduce { sym: 'block_tag', child_count: '3' }
+shift { state: '19' }
+process { version: '0',
+  version_count: '1',
+  state: '19',
+  row: '1',
+  col: '26' }
+lex_internal { state: '120', row: '1', column: '26' }
+   skip { character: '\' \'' }
+   consume { character: '\'=\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '=>', size: '4' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '47' }
+process { version: '0',
+  version_count: '1',
+  state: '47',
+  row: '1',
+  col: '32' }
+lex_internal { state: '115', row: '1', column: '32' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+detect_error {}
+resume { version: '0' }
+process { version: '0',
+  version_count: '1',
+  state: '0',
+  row: '1',
+  col: '32' }
+lex_internal { state: '0', row: '1', column: '32' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+recover_to_previous { state: '21', depth: '3' }
+skip_token { symbol: 'identifier' }
+process { version: '1',
+  version_count: '2',
+  state: '21',
+  row: '1',
+  col: '32' }
+lex_internal { state: '89', row: '1', column: '32' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+shift { state: '19' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '19',
+  row: '1',
+  col: '40' }
+lex_internal { state: '120', row: '1', column: '40' }
+   skip { character: '\' \'' }
+   consume { character: '\'=\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '=>', size: '4' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '47' }
+process { version: '1',
+  version_count: '2',
+  state: '0',
+  row: '1',
+  col: '40' }
+recover_to_previous { state: '78', depth: '2' }
+skip_token { symbol: '=>' }
+process { version: '2',
+  version_count: '3',
+  state: '78',
+  row: '1',
+  col: '40' }
+shift { state: '47' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '47',
+  row: '1',
+  col: '46' }
+lex_internal { state: '115', row: '1', column: '46' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+detect_error {}
+process { version: '1',
+  version_count: '2',
+  state: '47',
+  row: '1',
+  col: '46' }
+detect_error {}
+resume { version: '0' }
+process { version: '0',
+  version_count: '1',
+  state: '0',
+  row: '1',
+  col: '46' }
+lex_internal { state: '0', row: '1', column: '46' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+recover_to_previous { state: '21', depth: '3' }
+skip_token { symbol: 'identifier' }
+process { version: '1',
+  version_count: '2',
+  state: '21',
+  row: '1',
+  col: '46' }
+lex_internal { state: '89', row: '1', column: '46' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+shift { state: '19' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '19',
+  row: '1',
+  col: '54' }
+lex_internal { state: '120', row: '1', column: '54' }
+   skip { character: '\' \'' }
+   consume { character: '\'<\'' }
+   consume { character: '\'<\'' }
+   consume { character: '\'<\'' }
+lexed_lookahead { sym: '<<<', size: '6' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '77' }
+process { version: '1',
+  version_count: '2',
+  state: '0',
+  row: '1',
+  col: '54' }
+recover_to_previous { state: '78', depth: '2' }
+skip_token { symbol: '<<<' }
+process { version: '2',
+  version_count: '3',
+  state: '78',
+  row: '1',
+  col: '54' }
+shift { state: '100' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '100',
+  row: '1',
+  col: '62' }
+lex_internal { state: '74', row: '1', column: '62' }
+   consume { character: '\'\n\'' }
+lexed_lookahead { sym: '_newline', size: '2' }
+reduce { sym: 'block', child_count: '5' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+shift { state: '27' }
+process { version: '1',
+  version_count: '2',
+  state: '77',
+  row: '1',
+  col: '62' }
+reduce { sym: 'block', child_count: '4' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+shift { state: '27' }
+condense {}
+process { version: '0',
+  version_count: '1',
+  state: '27',
+  row: '2',
+  col: '0' }
+lex_internal { state: '74', row: '2', column: '0' }
+lexed_lookahead { sym: 'END', size: '0' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+reduce { sym: 'program', child_count: '1' }
+accept {}
+done {}
+  blocks
+    ✗ [33mSingle line[39m 
+        » [33m       
+        [32mactual[39m [31mexpected[39m 
+         
+        (program (block (block_tag) (expression (identifier)) (beta_reduce) ([32mERROR[39m[31mexpression[39m (identifier)) (beta_reduce) ([32mERROR[39m[31mexpression[39m (identifier)))) 
+        [39m[90m // macros.js:14[39m
+
+✗ [33m[1mBroken[22m[39m » [1m1[22m broken[90m (0.018s)[39m 
+  
+ 
+  ♢ [1mThe lambda language[22m 
+  
+new_parse {}
+process { version: '0',
+  version_count: '1',
+  state: '1',
+  row: '0',
+  col: '0' }
+lex_internal { state: '74', row: '0', column: '0' }
+   consume { character: '\'\n\'' }
+lexed_lookahead { sym: '_newline', size: '2' }
+shift { state: '8' }
+process { version: '0',
+  version_count: '1',
+  state: '8',
+  row: '1',
+  col: '0' }
+lex_internal { state: '74', row: '1', column: '0' }
+   consume { character: '\'>\'' }
+   consume { character: '\'>\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '>>>', size: '6' }
+shift { state: '3' }
+process { version: '0',
+  version_count: '1',
+  state: '3',
+  row: '1',
+  col: '6' }
+lex_internal { state: '89', row: '1', column: '6' }
+   skip { character: '\' \'' }
+   consume { character: '\'{\'' }
+lexed_lookahead { sym: '{', size: '2' }
+shift { state: '17' }
+process { version: '0',
+  version_count: '1',
+  state: '17',
+  row: '1',
+  col: '10' }
+lex_internal { state: '107', row: '1', column: '10' }
+   consume { character: '\'t\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'g\'' }
+lexed_lookahead { sym: '/[^}]*/', size: '6' }
+shift { state: '43' }
+process { version: '0',
+  version_count: '1',
+  state: '43',
+  row: '1',
+  col: '16' }
+lex_internal { state: '125', row: '1', column: '16' }
+   consume { character: '\'}\'' }
+lexed_lookahead { sym: '}', size: '2' }
+shift { state: '79' }
+process { version: '0',
+  version_count: '1',
+  state: '79',
+  row: '1',
+  col: '18' }
+lex_internal { state: '89', row: '1', column: '18' }
+   skip { character: '\' \'' }
+   consume { character: '\'f\'' }
+   consume { character: '\'o\'' }
+   consume { character: '\'o\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+reduce { sym: 'block_tag', child_count: '3' }
+shift { state: '19' }
+process { version: '0',
+  version_count: '1',
+  state: '19',
+  row: '1',
+  col: '26' }
+lex_internal { state: '120', row: '1', column: '26' }
+   skip { character: '\' \'' }
+   consume { character: '\'=\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '=>', size: '4' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '47' }
+process { version: '0',
+  version_count: '1',
+  state: '47',
+  row: '1',
+  col: '32' }
+lex_internal { state: '115', row: '1', column: '32' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+detect_error {}
+resume { version: '0' }
+process { version: '0',
+  version_count: '1',
+  state: '0',
+  row: '1',
+  col: '32' }
+lex_internal { state: '0', row: '1', column: '32' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+recover_to_previous { state: '21', depth: '3' }
+skip_token { symbol: 'identifier' }
+process { version: '1',
+  version_count: '2',
+  state: '21',
+  row: '1',
+  col: '32' }
+lex_internal { state: '89', row: '1', column: '32' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+shift { state: '19' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '19',
+  row: '1',
+  col: '40' }
+lex_internal { state: '120', row: '1', column: '40' }
+   skip { character: '\' \'' }
+   consume { character: '\'=\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '=>', size: '4' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '47' }
+process { version: '1',
+  version_count: '2',
+  state: '0',
+  row: '1',
+  col: '40' }
+recover_to_previous { state: '78', depth: '2' }
+skip_token { symbol: '=>' }
+process { version: '2',
+  version_count: '3',
+  state: '78',
+  row: '1',
+  col: '40' }
+shift { state: '47' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '47',
+  row: '1',
+  col: '46' }
+lex_internal { state: '115', row: '1', column: '46' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+detect_error {}
+process { version: '1',
+  version_count: '2',
+  state: '47',
+  row: '1',
+  col: '46' }
+detect_error {}
+resume { version: '0' }
+process { version: '0',
+  version_count: '1',
+  state: '0',
+  row: '1',
+  col: '46' }
+lex_internal { state: '0', row: '1', column: '46' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+recover_to_previous { state: '21', depth: '3' }
+skip_token { symbol: 'identifier' }
+process { version: '1',
+  version_count: '2',
+  state: '21',
+  row: '1',
+  col: '46' }
+lex_internal { state: '89', row: '1', column: '46' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+shift { state: '19' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '19',
+  row: '1',
+  col: '54' }
+lex_internal { state: '120', row: '1', column: '54' }
+   consume { character: '\';\'' }
+lexed_lookahead { sym: ';', size: '2' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '76' }
+process { version: '1',
+  version_count: '2',
+  state: '0',
+  row: '1',
+  col: '54' }
+recover_to_previous { state: '42', depth: '3' }
+skip_token { symbol: ';' }
+process { version: '2',
+  version_count: '3',
+  state: '42',
+  row: '1',
+  col: '54' }
+shift { state: '76' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '76',
+  row: '1',
+  col: '56' }
+lex_internal { state: '115', row: '1', column: '56' }
+   skip { character: '\' \'' }
+   consume { character: '\'<\'' }
+   consume { character: '\'<\'' }
+   consume { character: '\'<\'' }
+lexed_lookahead { sym: '<<<', size: '6' }
+shift { state: '100' }
+process { version: '1',
+  version_count: '2',
+  state: '0',
+  row: '1',
+  col: '56' }
+recover_to_previous { state: '78', depth: '2' }
+skip_token { symbol: '<<<' }
+process { version: '2',
+  version_count: '3',
+  state: '78',
+  row: '1',
+  col: '56' }
+shift { state: '100' }
+condense {}
+process { version: '0',
+  version_count: '2',
+  state: '100',
+  row: '1',
+  col: '64' }
+lex_internal { state: '74', row: '1', column: '64' }
+   consume { character: '\'\n\'' }
+lexed_lookahead { sym: '_newline', size: '2' }
+reduce { sym: 'block', child_count: '5' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+shift { state: '27' }
+process { version: '1',
+  version_count: '2',
+  state: '100',
+  row: '1',
+  col: '64' }
+reduce { sym: 'block', child_count: '5' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+shift { state: '27' }
+condense {}
+process { version: '0',
+  version_count: '1',
+  state: '27',
+  row: '2',
+  col: '0' }
+lex_internal { state: '74', row: '2', column: '0' }
+lexed_lookahead { sym: 'END', size: '0' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+reduce { sym: 'program', child_count: '1' }
+accept {}
+done {}
+  blocks
+    ✗ [33mSingle line[39m 
+        » [33m       
+        [32mactual[39m [31mexpected[39m 
+         
+        (program (block (block_tag) (expression (identifier)) (beta_reduce) ([32mERROR[39m[31mexpression[39m (identifier)) (beta_reduce) ([32mERROR[39m[31mexpression[39m (identifier)))) 
+        [39m[90m // macros.js:14[39m
+
+✗ [33m[1mBroken[22m[39m » [1m1[22m broken[90m (0.025s)[39m 
+  
+ 
+  ♢ [1mThe lambda language[22m 
+  
+new_parse {}
+process { version: '0',
+  version_count: '1',
+  state: '1',
+  row: '0',
+  col: '0' }
+lex_internal { state: '74', row: '0', column: '0' }
+   consume { character: '\'\n\'' }
+lexed_lookahead { sym: '_newline', size: '2' }
+shift { state: '8' }
+process { version: '0',
+  version_count: '1',
+  state: '8',
+  row: '1',
+  col: '0' }
+lex_internal { state: '74', row: '1', column: '0' }
+   consume { character: '\'>\'' }
+   consume { character: '\'>\'' }
+   consume { character: '\'>\'' }
+lexed_lookahead { sym: '>>>', size: '6' }
+shift { state: '3' }
+process { version: '0',
+  version_count: '1',
+  state: '3',
+  row: '1',
+  col: '6' }
+lex_internal { state: '89', row: '1', column: '6' }
+   skip { character: '\' \'' }
+   consume { character: '\'{\'' }
+lexed_lookahead { sym: '{', size: '2' }
+shift { state: '17' }
+process { version: '0',
+  version_count: '1',
+  state: '17',
+  row: '1',
+  col: '10' }
+lex_internal { state: '107', row: '1', column: '10' }
+   consume { character: '\'t\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'g\'' }
+lexed_lookahead { sym: '/[^}]*/', size: '6' }
+shift { state: '43' }
+process { version: '0',
+  version_count: '1',
+  state: '43',
+  row: '1',
+  col: '16' }
+lex_internal { state: '125', row: '1', column: '16' }
+   consume { character: '\'}\'' }
+lexed_lookahead { sym: '}', size: '2' }
+shift { state: '79' }
+process { version: '0',
+  version_count: '1',
+  state: '79',
+  row: '1',
+  col: '18' }
+lex_internal { state: '89', row: '1', column: '18' }
+   skip { character: '\' \'' }
+   consume { character: '\'f\'' }
+   consume { character: '\'o\'' }
+   consume { character: '\'o\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+reduce { sym: 'block_tag', child_count: '3' }
+shift { state: '19' }
+process { version: '0',
+  version_count: '1',
+  state: '19',
+  row: '1',
+  col: '26' }
+lex_internal { state: '120', row: '1', column: '26' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'r\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+reduce { sym: '_term', child_count: '1' }
+shift { state: '19' }
+process { version: '0',
+  version_count: '1',
+  state: '19',
+  row: '1',
+  col: '34' }
+lex_internal { state: '120', row: '1', column: '34' }
+   skip { character: '\' \'' }
+   consume { character: '\'b\'' }
+   consume { character: '\'a\'' }
+   consume { character: '\'z\'' }
+lexed_lookahead { sym: 'identifier', size: '6' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression_repeat1', child_count: '2' }
+shift { state: '19' }
+process { version: '0',
+  version_count: '1',
+  state: '19',
+  row: '1',
+  col: '42' }
+lex_internal { state: '120', row: '1', column: '42' }
+   skip { character: '\' \'' }
+   consume { character: '\'<\'' }
+   consume { character: '\'<\'' }
+   consume { character: '\'<\'' }
+lexed_lookahead { sym: '<<<', size: '6' }
+reduce { sym: '_term', child_count: '1' }
+reduce { sym: 'block_expression_repeat1', child_count: '2' }
+reduce { sym: 'block_expression', child_count: '1' }
+shift { state: '77' }
+process { version: '0',
+  version_count: '1',
+  state: '77',
+  row: '1',
+  col: '50' }
+lex_internal { state: '74', row: '1', column: '50' }
+   consume { character: '\'\n\'' }
+lexed_lookahead { sym: '_newline', size: '2' }
+reduce { sym: 'block', child_count: '4' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+shift { state: '27' }
+process { version: '0',
+  version_count: '1',
+  state: '27',
+  row: '2',
+  col: '0' }
+lex_internal { state: '74', row: '2', column: '0' }
+lexed_lookahead { sym: 'END', size: '0' }
+reduce { sym: 'program_repeat1', child_count: '2' }
+reduce { sym: 'program', child_count: '1' }
+accept {}
+done {}
+  blocks
+    ✗ [33mSingle line[39m 
+        » [33m       
+        [32mactual[39m [31mexpected[39m 
+         
+        (program (block (block_tag) (expression (identifier[31m)) (beta_reduce[39m) ([31mexpression ([39midentifier[31m)) (beta_reduce[39m) ([31mexpression ([39midentifier)))) 
+        [39m[90m // macros.js:14[39m
+
+✗ [33m[1mBroken[22m[39m » [1m1[22m broken[90m (0.016s)[39m 
+  

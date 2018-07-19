@@ -1,0 +1,144 @@
+=====
+Single line
+=====
+
+>>> {tag} ID "foo" == (\x -> x) "foo" => "foo" <<<
+
+---
+
+(program
+  (block
+    (block_tag)
+    (expression
+      (func_identifier)
+      (string)
+    )
+    (alpha_convert)
+    (expression
+      (group
+        (function
+          (func_indicator)
+          (identifier)
+          (func_sep)
+          (func_body
+            (identifier)
+          )
+        )
+      )
+      (string)
+    )
+    (beta_reduce)
+    (expression
+      (string)
+    )
+  )
+)
+
+
+=====
+Single line no separators
+=====
+
+>>> ID "foo" (\x -> x) "foo" "foo" <<<
+
+---
+
+(program
+  (block
+    (expression
+      (func_identifier)
+      (string)
+      (group
+        (function
+          (func_indicator)
+          (identifier)
+          (func_sep)
+          (func_body
+            (identifier)
+          )
+        )
+      )
+      (string)
+      (string)
+    )
+  )
+)
+
+
+=====
+Single line only ; separators
+=====
+
+>>> ID "foo"; (\x -> x) "foo"; "foo" <<<
+
+---
+
+(program
+  (block
+    (expression
+      (func_identifier)
+      (string)
+    )
+    (expression
+      (group
+        (function
+          (func_indicator)
+          (identifier)
+          (func_sep)
+          (func_body
+            (identifier)
+          )
+        )
+      )
+      (string)
+    )
+    (expression
+      (string)
+    )
+  )
+)
+
+
+=====
+Multi line
+=====
+
+>>>>>>>>>>>>> { tag }
+
+ID "foo"
+
+== (\x -> x) "foo"
+
+=> "foo"
+
+<<<<<<<<<<<<<
+
+---
+
+(program
+  (block
+    (block_tag)
+    (expression
+      (func_identifier)
+      (string)
+    )
+    (alpha_convert)
+    (expression
+      (group
+        (function
+          (func_indicator)
+          (identifier)
+          (func_sep)
+          (func_body
+            (identifier)
+          )
+        )
+      )
+      (string)
+    )
+    (beta_reduce)
+    (expression
+      (string)
+    )
+  )
+)

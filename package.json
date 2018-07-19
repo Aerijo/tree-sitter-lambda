@@ -16,15 +16,16 @@
   "author": "Benjamin Gray",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.4.0",
-    "tree-sitter-cli": "0.9.x",
-    "tree-sitter": "0.9.x"
+    "nan": "^2.4.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "0.9.x"
+    "concat-stream": "^1.6.0",
+    "tree-sitter": "^0.12.8",
+    "tree-sitter-cli": "^0.12.5"
   },
   "scripts": {
-    "build": "tree-sitter generate && node-gyp rebuild",
+    "build": "tree-sitter generate && node-gyp build",
+    "parse": "node scripts/parse.js",
     "test": "tree-sitter test && tree-sitter parse examples --quiet --time"
   }
 }

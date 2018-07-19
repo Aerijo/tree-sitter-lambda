@@ -1,0 +1,61 @@
+-- Common
+
+ID = \x -> x
+
+-- Logic
+
+TRUE  = \x y -> x
+FALSE = \x y -> y
+
+NOT = \x -> x FALSE TRUE
+
+AND  = \a b -> a b a
+NAND = \a b -> a (NOT b) TRUE
+OR   = \a b -> a a b
+NOR  = \a b -> a FALSE (NOT b)
+XOR  = \a b -> a (NOT b) b
+NXOR = \a b -> a b (NOT b)
+
+
+
+-- Church
+
+"""The first few Church numerals. Can alternatively use actual numbers"""
+ZERO  = FALSE
+ONE   = \f x -> f x
+TWO   = \f x -> f (f x)
+THREE = \f x -> f (f (f x))
+FOUR  = \f x -> f (f (f (f x)))
+
+"""Takes a number and returns the successor"""
+SUCC = \n f x -> f (n f x)
+
+"""
+Takes a number and returns the predecessor
+Note:
+  - PRED 0 == 0
+  - MINUS (smaller) (bigger) == 0
+"""
+
+PRED = \n -> \f -> \x -> n (\g -> \h -> h (g f)) (\u -> x) (\u -> u)
+
+"""Returns TRUE/FALSE if the number is zero or not"""
+ISZERO = \x -> x (\y -> FALSE) TRUE
+NOTZERO = \x -> NOT (ISZERO x)
+
+PLUS = \m -> \n -> n SUCC m
+MULTIPLY = \m -> \n -> \f -> m (n f)
+EXP = \m -> \n -> n m
+MINUS = \m -> \n -> n PRED m
+
+"""Less / greater than or equal"""
+LEQ = \m -> \n -> ISZERO (MINUS m n)
+GEQ = \m -> \n -> ISZERO (MINUS n m)
+
+"""Equal / not equal"""
+EQ  = \m -> \n -> AND (LEQ m n) (LEQ n m)
+NEQ = \m -> \n -> NOT (EQ m n)
+
+"""Less / greater than"""
+LT  = \m -> \n -> NOT (GEQ m n)
+GT  = \m -> \n -> NOT (LEQ m n)

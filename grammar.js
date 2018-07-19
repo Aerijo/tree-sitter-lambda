@@ -1,71 +1,127 @@
 const PREC = {
-  FUNC: 1,
-  APPL: 10,
-  COMMENT: 1
-}
+  block: 1,
+  function: 2,
+  func_body: 3
+};
 
 module.exports = grammar({
   name: 'lambda',
 
-  extras: $ => [/[\s\uFEFF\u2060\u200B]|\n/, $.comment],
+  extras: $ => [/\s/, $.line_comment, $.block_comment],
+
+  word: $ => $.identifier,
 
   rules: {
-    // The production rules of the context-free grammar
-    program: $ => repeat(choice($.block, $.expression)),
-
-    block: $ => prec(1, seq($.begin_block, $.expression, repeat(seq($._operator, $.expression)))),
-
-    comment: $ => token(prec(10, choice(
-      seq("--", /.*/, "\n"),
-      seq('"""', /[^"""]*/, '"""')
-    ))),
-
-    begin_block: $ => choice(">>", "|>", "$>"),
-
-    _operator: $ => choice($.beta_reduce, $.alpha_convert),
-
-    expression: $ => seq(repeat1($._term), choice("\n", ";")),
-
-    _term: $ => seq(choice(
-      $.apply,
-      $.named_variable,
-      $.variable,
-      $.numbered_variable,
-      $.function,
-      $.group,
-      $.beta_replacement
+    // Start rule
+    program: $ => repeat(choice(
+      $.line_comment,
+      $.block_comment,
+      $.annotation,
+      $.function_definition,
+      $.block,
+      seq(">", $.expression),
+      $._newline
     )),
 
-    beta_replacement: $ => prec(1, seq($._term, $.repl_def)),
+    // Non terminals
+    function_definition: $ => seq(
+      $.func_identifier,
+      "=",
+      $.expression
+    ),
 
-    repl_def: $ => seq("[", $._term, $.replace_operator, $._term, "]"),
+    block: $ => prec.right(PREC.block, seq(
+      />>>+/,
+      optional($.block_tag),
+      optional($._block_contents),
+      /<<<+/
+    )),
 
-    _var: $ => choice($.variable, $.named_variable, $.numbered_variable),
+    _block_contents: $ => repeat1(choice(
+      $.annotation,
+      $._newline,
+      seq(
+        optional($._relation_operator),
+        alias($.block_expression, "expression"),
+        optional(";")
+      )
+    )),
 
-    replace_operator: $ => prec(1, choice("/", "\\", "|", "<-")),
+    block_expression: $ => prec.right(repeat1($._term)),
 
-    named_variable: $ => choice("True", "False", " 0", " 1", " 2"),
+    _relation_operator: $ => choice($.alpha_convert, $.beta_reduce),
 
-    apply: $ => prec.left(1, seq(choice($._term, $.apply), $._term)),
+    expression: $ => seq(repeat1($._term), choice(";", $._newline)),
 
-    variable: $ => seq(/[a-z]/),
-
-    numbered_variable: $ => seq(/[a-z]/, /_?\d+/),
-
-    function: $ => prec.right(10, seq($._lambda, $.bound_variables, $._func_sep, $.func_body)),
-
-    bound_variables: $ => repeat1(choice($.variable, $.numbered_variable)),
-
-    func_body: $ => prec.right(1, seq($._term, repeat($._term))),
-
-    _lambda: $ => choice("\\", /\\?(LAMBDA|lambda|Lambda)/, "\u03BB"),
+    _term: $ => prec.right(seq(
+      choice(
+        $.group,
+        $.function,
+        $._terminal
+      ),
+      optional($.beta_replacement)
+    )),
 
     group: $ => seq("(", repeat($._term), ")"),
 
-    _func_sep: $ => choice(".", "->"),
+    function: $ => prec.right(PREC.function, seq(
+      $.func_indicator,
+      repeat($.identifier),
+      $.func_sep,
+      optional($.func_body)
+    )),
 
-    beta_reduce: $ => choice("=>", seq("=", "β"), seq("β", "=")),
+    func_body: $ => prec.right(repeat1($._term)),
 
-    alpha_convert: $ => choice("==", seq("=", "α"), seq("α", "="))
+    beta_replacement: $ => seq("[", $._term, $._replacement_indicator, $._term, "]"),
+
+    _replacement_indicator: $ => choice($.replace_forwards, $.replace_backwards),
+
+    _terminal: $ => choice(
+      $.string,
+      $.integer,
+      $.identifier,
+      $.func_identifier
+    ),
+
+    // Terminals
+    _newline: $ => /\n/,
+
+    alpha_convert: $ => choice("==", "\u03B1=", "=\u03B1", "a=", "=a"),
+
+    beta_reduce: $ => choice("=>", "\u03B2=", "=\u03B2", "b=", "=b"),
+
+    func_indicator: $ => choice("\\", "\u03BB", "lambda"),
+
+    func_sep: $ => choice("->", ".", ":"),
+
+    block_tag: $ => seq("{", /[^}\n]*/, "}"),
+
+    annotation: $ => choice(
+      seq('"""', repeat(choice(/[^"]/, /"[^"]/, /""[^"]/)), '"""'),
+      seq("'''", repeat(choice(/[^']/, /'[^']/, /''[^']/)), "'''")
+    ),
+
+    // forwards means "x becomes y" (\x.M) N => M [x := N]
+    replace_forwards: $ => choice("->", ":=", "/", "|"),
+
+    // backwards means "x is now the meaning of y" (\x.M) N => M [N <- x]
+    replace_backwards: $ => choice("<-", "\\"),
+
+    identifier: $ => token(seq(/[a-z_]/, repeat(/[a-zA-Z0-9_]/))),
+
+    func_identifier: $ => token(seq(/[A-Z]/, repeat(/[a-zA-Z0-9]/))),
+
+    line_comment: $ => token(seq("--", /.*/)),
+
+    block_comment: $ => token(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/')),
+
+    integer: $ => /\d+/,
+
+    string: $ => token(choice( // python style (mostly)
+        seq('`', repeat(choice(/[^\\`\n]/, /\\./, /\\\r?\n/)), '`'),
+        seq('"', repeat(choice(/[^\\"\n]/, /\\./, /\\\r?\n/)), '"'),
+        seq("'", repeat(choice(/[^\\'\n]/, /\\./, /\\\r?\n/)), "'")
+    ))
   }
 });

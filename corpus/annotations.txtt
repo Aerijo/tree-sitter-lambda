@@ -1,0 +1,44 @@
+=====
+Lone
+=====
+
+""" This is an annotation """
+
+---
+
+(program (annotation))
+
+
+=====
+Multiple
+=====
+
+""" foo """""" bar """
+""" baz """ """ qui """
+
+---
+
+(program
+  (annotation)
+  (annotation)
+  (annotation)
+  (annotation)
+)
+
+=====
+In block
+=====
+
+>>>
+"""annotation"""
+-- comment
+<<<
+
+---
+
+(program
+  (block
+    (annotation)
+    (line_comment)
+  )
+)

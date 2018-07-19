@@ -9,12 +9,16 @@ extern "C" {
 #include <stdint.h>
 #include <stdlib.h>
 
-typedef uint16_t TSSymbol;
-typedef uint16_t TSStateId;
-
 #define ts_builtin_sym_error ((TSSymbol)-1)
 #define ts_builtin_sym_end 0
 #define TREE_SITTER_SERIALIZATION_BUFFER_SIZE 1024
+
+#ifndef TREE_SITTER_RUNTIME_H_
+typedef uint16_t TSSymbol;
+typedef struct TSLanguage TSLanguage;
+#endif
+
+typedef uint16_t TSStateId;
 
 typedef struct {
   bool visible : 1;
@@ -47,8 +51,7 @@ typedef struct {
       TSSymbol symbol;
       int16_t dynamic_precedence;
       uint8_t child_count;
-      uint8_t alias_sequence_id : 7;
-      bool fragile : 1;
+      uint8_t alias_sequence_id;
     };
   } params;
   TSParseActionType type : 4;
@@ -64,11 +67,10 @@ typedef union {
   struct {
     uint8_t count;
     bool reusable : 1;
-    bool depends_on_lookahead : 1;
   };
 } TSParseActionEntry;
 
-typedef struct TSLanguage {
+struct TSLanguage {
   uint32_t version;
   uint32_t symbol_count;
   uint32_t alias_count;
@@ -82,6 +84,8 @@ typedef struct TSLanguage {
   const TSSymbol *alias_sequences;
   uint16_t max_alias_sequence_length;
   bool (*lex_fn)(TSLexer *, TSStateId);
+  bool (*keyword_lex_fn)(TSLexer *, TSStateId);
+  TSSymbol keyword_capture_token;
   struct {
     const bool *states;
     const TSSymbol *symbol_map;
@@ -91,7 +95,7 @@ typedef struct TSLanguage {
     unsigned (*serialize)(void *, char *);
     void (*deserialize)(void *, const char *, unsigned);
   } external_scanner;
-} TSLanguage;
+};
 
 /*
  *  Lexer Macros
@@ -129,6 +133,7 @@ typedef struct TSLanguage {
  */
 
 #define STATE(id) id
+
 #define ACTIONS(id) id
 
 #define SHIFT(state_value)              \
