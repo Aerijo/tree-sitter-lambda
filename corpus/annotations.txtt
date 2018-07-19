@@ -38,7 +38,9 @@ In block
 
 (program
   (block
+    (block_start)
     (annotation)
     (line_comment)
+    (block_end)
   )
 )

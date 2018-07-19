@@ -31,10 +31,10 @@ module.exports = grammar({
     ),
 
     block: $ => prec.right(PREC.block, seq(
-      />>>+/,
-      optional($.block_tag),
+      $.block_start,
+      optional(seq("{", alias($.identifier, "tag"), "}")),
       optional($._block_contents),
-      /<<<+/
+      $.block_end
     )),
 
     _block_contents: $ => repeat1(choice(
@@ -87,6 +87,10 @@ module.exports = grammar({
     // Terminals
     _newline: $ => /\n/,
 
+    block_start: $ => />>>+/,
+
+    block_end: $ => /<<<+/,
+
     alpha_convert: $ => choice("==", "\u03B1=", "=\u03B1", "a=", "=a"),
 
     beta_reduce: $ => choice("=>", "\u03B2=", "=\u03B2", "b=", "=b"),
@@ -94,8 +98,6 @@ module.exports = grammar({
     func_indicator: $ => choice("\\", "\u03BB", "lambda"),
 
     func_sep: $ => choice("->", ".", ":"),
-
-    block_tag: $ => seq("{", /[^}\n]*/, "}"),
 
     annotation: $ => choice(
       seq('"""', repeat(choice(/[^"]/, /"[^"]/, /""[^"]/)), '"""'),
