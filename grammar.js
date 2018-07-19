@@ -32,10 +32,12 @@ module.exports = grammar({
 
     block: $ => prec.right(PREC.block, seq(
       $.block_start,
-      optional(seq("{", alias($.identifier, "tag"), "}")),
+      optional($.block_tag),
       optional($._block_contents),
       $.block_end
     )),
+
+    block_tag: $ => seq("{", $.identifier, "}"),
 
     _block_contents: $ => repeat1(choice(
       $.annotation,

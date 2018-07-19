@@ -9,7 +9,9 @@ Single line
 (program
   (block
     (block_start)
-    (tag)
+    (block_tag
+      (identifier)
+    )
     (expression
       (func_identifier)
       (string)
@@ -124,7 +126,9 @@ ID "foo"
 (program
   (block
     (block_start)
-    (tag)
+    (block_tag
+      (identifier)
+    )
     (expression
       (func_identifier)
       (string)
