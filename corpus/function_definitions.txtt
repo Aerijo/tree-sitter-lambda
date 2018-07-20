@@ -1,0 +1,28 @@
+=====
+Empty
+=====
+
+FOO = BAR
+BAZ =
+QUI = QUO
+
+---
+
+(program
+  (function_definition
+    (func_identifier)
+    (expression
+      (func_identifier)
+    )
+  )
+  (function_definition
+    (func_identifier)
+    (expression)
+  )
+  (function_definition
+    (func_identifier)
+    (expression
+      (func_identifier)
+    )
+  )
+)

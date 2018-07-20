@@ -20,7 +20,7 @@ Single line
     (expression
       (group
         (function
-          (func_indicator)
+          (lambda)
           (identifier)
           (func_sep)
           (func_body
@@ -55,7 +55,7 @@ Single line no separators
       (string)
       (group
         (function
-          (func_indicator)
+          (lambda)
           (identifier)
           (func_sep)
           (func_body
@@ -89,7 +89,7 @@ Single line only ; separators
     (expression
       (group
         (function
-          (func_indicator)
+          (lambda)
           (identifier)
           (func_sep)
           (func_body
@@ -137,7 +137,7 @@ ID "foo"
     (expression
       (group
         (function
-          (func_indicator)
+          (lambda)
           (identifier)
           (func_sep)
           (func_body

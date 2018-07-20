@@ -22,7 +22,7 @@ Identity functions
 (program
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
@@ -32,7 +32,7 @@ Identity functions
   )
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
@@ -42,7 +42,7 @@ Identity functions
   )
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
@@ -65,12 +65,12 @@ Curried functions
 (program
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
         (function
-          (func_indicator)
+          (lambda)
           (identifier)
           (func_sep)
           (func_body
@@ -83,7 +83,7 @@ Curried functions
   )
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (identifier)
       (func_sep)
@@ -134,13 +134,13 @@ Y-combinator
 (program
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
         (group
           (function
-            (func_indicator)
+            (lambda)
             (identifier)
             (func_sep)
             (func_body
@@ -154,7 +154,7 @@ Y-combinator
         )
         (group
           (function
-            (func_indicator)
+            (lambda)
             (identifier)
             (func_sep)
             (func_body
@@ -193,7 +193,7 @@ Replacement
   )
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
@@ -209,7 +209,7 @@ Replacement
   )
   (expression
     (function
-      (func_indicator)
+      (lambda)
       (identifier)
       (func_sep)
       (func_body
@@ -225,7 +225,7 @@ Replacement
   (expression
     (group
       (function
-        (func_indicator)
+        (lambda)
         (identifier)
         (func_sep)
         (func_body

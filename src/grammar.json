@@ -9,6 +9,10 @@
         "members": [
           {
             "type": "SYMBOL",
+            "name": "import_statement"
+          },
+          {
+            "type": "SYMBOL",
             "name": "line_comment"
           },
           {
@@ -47,22 +51,73 @@
         ]
       }
     },
-    "function_definition": {
+    "import_statement": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "func_identifier"
-        },
-        {
           "type": "STRING",
-          "value": "="
+          "value": "import"
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "file_path"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "module_name"
+            }
+          ]
         }
       ]
+    },
+    "file_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\.*\\/"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".+"
+        }
+      ]
+    },
+    "module_name": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_0-9]+"
+    },
+    "function_definition": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "func_identifier"
+          },
+          {
+            "type": "STRING",
+            "value": "="
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "block": {
       "type": "PREC_RIGHT",
@@ -204,7 +259,7 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT1",
+          "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
             "name": "_term"
@@ -291,7 +346,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "func_indicator"
+            "name": "lambda"
           },
           {
             "type": "REPEAT",
@@ -451,7 +506,7 @@
         }
       ]
     },
-    "func_indicator": {
+    "lambda": {
       "type": "CHOICE",
       "members": [
         {

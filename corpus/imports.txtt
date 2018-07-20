@@ -1,0 +1,28 @@
+=====
+Module
+=====
+
+import prelude
+import logic
+
+---
+
+(program
+  (import_statement (module_name))
+  (import_statement (module_name))
+)
+
+
+=====
+File path
+=====
+
+import ./foo
+import /root/bar
+
+---
+
+(program
+  (import_statement (file_path))
+  (import_statement (file_path))
+)

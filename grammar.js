@@ -14,6 +14,7 @@ module.exports = grammar({
   rules: {
     // Start rule
     program: $ => repeat(choice(
+      $.import_statement,
       $.line_comment,
       $.block_comment,
       $.annotation,
@@ -24,11 +25,17 @@ module.exports = grammar({
     )),
 
     // Non terminals
-    function_definition: $ => seq(
+    import_statement: $ => seq("import", choice($.file_path, $.module_name)),
+
+    file_path: $ => seq(/\.*\//, /.+/),
+
+    module_name: $ => /[a-zA-Z_0-9]+/,
+
+    function_definition: $ => prec.right(seq(
       $.func_identifier,
       "=",
-      $.expression
-    ),
+      optional($.expression)
+    )),
 
     block: $ => prec.right(PREC.block, seq(
       $.block_start,
@@ -53,7 +60,7 @@ module.exports = grammar({
 
     _relation_operator: $ => choice($.alpha_convert, $.beta_reduce),
 
-    expression: $ => seq(repeat1($._term), choice(";", $._newline)),
+    expression: $ => seq(repeat($._term), choice(";", $._newline)),
 
     _term: $ => prec.right(seq(
       choice(
@@ -67,7 +74,7 @@ module.exports = grammar({
     group: $ => seq("(", repeat($._term), ")"),
 
     function: $ => prec.right(PREC.function, seq(
-      $.func_indicator,
+      $.lambda,
       repeat($.identifier),
       $.func_sep,
       optional($.func_body)
@@ -97,7 +104,7 @@ module.exports = grammar({
 
     beta_reduce: $ => choice("=>", "\u03B2=", "=\u03B2", "b=", "=b"),
 
-    func_indicator: $ => choice("\\", "\u03BB", "lambda"),
+    lambda: $ => choice("\\", "\u03BB", "lambda"),
 
     func_sep: $ => choice("->", ".", ":"),
 
