@@ -44,7 +44,9 @@ module.exports = grammar({
       $.block_end
     )),
 
-    block_tag: $ => seq("{", $.identifier, "}"),
+    block_tag: $ => seq("{", $.tag_name, "}"),
+
+    tag_name: $ => /[\w_]+/,
 
     _block_contents: $ => repeat1(choice(
       $.annotation,
@@ -68,7 +70,7 @@ module.exports = grammar({
         $.function,
         $._terminal
       ),
-      optional($.beta_replacement)
+      repeat($.beta_replacement)
     )),
 
     group: $ => seq("(", repeat($._term), ")"),
