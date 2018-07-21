@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-lambda",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Custom lambda expression grammar for tree-sitter",
   "main": "index.js",
   "repository": "https://github.com/Aerijo/tree-sitter-lambda",
